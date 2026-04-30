@@ -1,0 +1,33 @@
+Individual Reflection
+
+Desmond Dunlap
+Data Tracking Personal Analytics | Milestone 5 – Final Presentation
+
+My Contributions
+User Authentication
+
+My main contribution was working on the user authentication part of the project. I helped focus on how users register, log in, and access protected parts of the application. This included understanding the user model, registration process, login system, and Spring Security setup.
+
+JWT Authentication
+
+I worked on the idea of using JWT authentication so users can stay logged in securely. JWT helps the backend know which user is making a request without requiring the user to log in every time.
+
+User Service and Controller
+
+I also focused on the user service and controller. The service handles the logic for users, while the controller handles requests such as registration and login. This helped connect the frontend login/register pages to the backend.
+
+Reflection on Teamwork
+
+Working on this project helped me understand how important communication is in a team. Each person had a different part of the project, so we had to make sure our work connected together. I learned that even if one part works by itself, it still has to fit with the rest of the system.
+
+Technical Growth
+
+This project helped me learn more about Spring Security, user accounts, protected routes, and how authentication works in a full-stack application. I also learned that security is important because it protects user data and controls who can access certain features.
+
+AI Usage Reflection
+
+AI was used to help explain concepts, organize ideas, and improve project documentation. I reviewed the information and made sure it matched our project before using it.
+
+Lessons Learned
+
+The biggest lesson I learned is that authentication is one of the most important parts of a web application. Users need to be able to log in safely, and the backend needs to protect private data. This project helped me better understand how frontend, backend, and security work together.
