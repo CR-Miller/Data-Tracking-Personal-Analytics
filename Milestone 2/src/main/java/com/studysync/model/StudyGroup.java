@@ -1,62 +1,34 @@
 package com.studysync.model;
 
-import java.util.List;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity
 public class StudyGroup {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
-    private String courseName;
-    private List<User> members;
-    private List<Task> groupTasks;
 
-    public StudyGroup() {
+    @NotBlank
+    private String groupName;
+
+    private String subject;
+
+    public StudyGroup() {}
+
+    public StudyGroup(String groupName, String subject) {
+        this.groupName = groupName;
+        this.subject = subject;
     }
 
-    public StudyGroup(Long id, String name, String courseName, List<User> members, List<Task> groupTasks) {
-        this.id = id;
-        this.name = name;
-        this.courseName = courseName;
-        this.members = members;
-        this.groupTasks = groupTasks;
-    }
+    public Long getId() { return id; }
 
-    public Long getId() {
-        return id;
-    }
+    public String getGroupName() { return groupName; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setGroupName(String groupName) { this.groupName = groupName; }
 
-    public String getName() {
-        return name;
-    }
+    public String getSubject() { return subject; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public List<User> getMembers() {
-        return members;
-    }
-
-    public void setMembers(List<User> members) {
-        this.members = members;
-    }
-
-    public List<Task> getGroupTasks() {
-        return groupTasks;
-    }
-
-    public void setGroupTasks(List<Task> groupTasks) {
-        this.groupTasks = groupTasks;
-    }
+    public void setSubject(String subject) { this.subject = subject; }
 }
