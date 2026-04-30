@@ -1,12 +1,31 @@
 package com.studysync.backend.model;
 
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+
+@Entity
+@Table(name = "tasks")
 public class Task {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String title;
+
+    @NotBlank
     private String description;
     private String dueDate;
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User assignedUser;
+
+    @ManyToOne
+    @JoinColumn(name = "group_id")
     private StudyGroup group;
 
     public Task() {

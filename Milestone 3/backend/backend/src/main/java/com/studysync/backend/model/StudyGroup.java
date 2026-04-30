@@ -1,12 +1,32 @@
 package com.studysync.backend.model;
 
 import java.util.List;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
+@Entity
+@Table(name = "study_groups")
 public class StudyGroup {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
     private String courseName;
+
+    @ManyToMany
+    @JoinTable(
+            name = "group_members",
+            joinColumns = @JoinColumn(name = "group_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id")
+    )
     private List<User> members;
+
+    @OneToMany(mappedBy = "group")
     private List<Task> groupTasks;
 
     public StudyGroup() {

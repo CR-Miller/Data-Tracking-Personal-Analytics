@@ -1,14 +1,34 @@
 package com.studysync.backend.model;
 
 import java.util.List;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
+@Entity
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank
     private String name;
+
+    @NotBlank
+    @Email
     private String email;
+
+    @NotBlank
     private String password;
+
+    @OneToMany(mappedBy = "assignedUser")
     private List<Task> tasks;
+
+    @ManyToMany(mappedBy = "members")
     private List<StudyGroup> groups;
+
 
     public User() {
     }
