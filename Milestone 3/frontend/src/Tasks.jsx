@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getTasks, deleteTask } from './api';
+import { getTasks, deleteTask, updateTask } from './api';
 
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
@@ -14,8 +14,24 @@ export default function Tasks() {
   }, []);
 
   const handleDelete = async (id) => {
-    await deleteTask(id);
-    load();
+    try {
+      await deleteTask(id);
+      load();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const handleDueDateChange = async (task, newDate) => {
+    try {
+      await updateTask(task.id, {
+        ...task,
+        dueDate: newDate
+      });
+      load();
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -29,8 +45,16 @@ export default function Tasks() {
           <div className="task-card" key={task.id}>
             <h3>{task.title}</h3>
             <p>{task.description}</p>
-            <p>Due: {task.dueDate}</p>
+
+            <p>Due:</p>
+            <input
+              type="date"
+              value={task.dueDate || ""}
+              onChange={(e) => handleDueDateChange(task, e.target.value)}
+            />
+
             <p>Status: {task.status}</p>
+
             <button onClick={() => handleDelete(task.id)}>Delete</button>
           </div>
         ))

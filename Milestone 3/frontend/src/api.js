@@ -2,7 +2,9 @@ import axios from 'axios';
 
 const api = axios.create({
   baseURL: 'http://localhost:8080/api',
-  headers: { 'Content-Type': 'application/json' },
+  headers: {
+    'Content-Type': 'application/json'
+  },
   timeout: 10000,
   auth: {
     username: 'user',
@@ -10,28 +12,31 @@ const api = axios.create({
   }
 });
 
-// Tasks
+// =======================
+// TASKS (CRUD)
+// =======================
+
+// Get all tasks
 export const getTasks = () => api.get('/tasks');
+
+// Create new task
 export const createTask = (data) => api.post('/tasks', data);
+
+// Update task (used for due date change)
 export const updateTask = (id, data) => api.put(`/tasks/${id}`, data);
+
+// Delete task
 export const deleteTask = (id) => api.delete(`/tasks/${id}`);
+
+// =======================
+// OPTIONAL (if you use later)
+// =======================
+
+// Mark complete (only works if backend has this endpoint)
 export const completeTask = (id) => api.patch(`/tasks/${id}/complete`);
 
-// Study Sessions (temporary placeholders)
-export const getSessions = () => Promise.resolve({ data: [] });
-export const createSession = (data) => Promise.resolve({ data });
-export const deleteSession = (id) => Promise.resolve({ data: id });
-
-// Auth (TEMP so app doesn’t crash)
-export const login = () => Promise.resolve({ data: {} });
-export const register = () => Promise.resolve({ data: {} });
-
-// Users
-export const getUsers = () => api.get('/users');
-export const createUser = (data) => api.post('/users', data);
-
-// Study Groups
-export const getStudyGroups = () => api.get('/study-groups');
-export const createStudyGroup = (data) => api.post('/study-groups', data);
+// =======================
+// EXPORT INSTANCE
+// =======================
 
 export default api;
