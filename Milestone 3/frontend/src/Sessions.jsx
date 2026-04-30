@@ -1,5 +1,5 @@
 import { useState, useEffect, useReducer } from 'react';
-import { getSessions, createSession, deleteSession } from '../services/api';
+import { getSessions, createSession, deleteSession } from './api';
 
 const MOCK_SESSIONS = [
   { id: 1, subject: 'CS101',   date: new Date().toISOString(),                      duration: 90,  notes: 'Worked through recursion examples' },

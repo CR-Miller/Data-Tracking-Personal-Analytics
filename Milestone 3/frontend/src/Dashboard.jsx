@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getTasks, getSessions } from '../services/api';
+import { getTasks, getSessions } from './api';
 
 // ── Helpers ─────────────────────────────────────────────
 function daysBetween(dateStr) {
