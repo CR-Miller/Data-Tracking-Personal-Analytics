@@ -4,34 +4,30 @@ import { getTasks, deleteTask, updateTask } from './api';
 export default function Tasks() {
   const [tasks, setTasks] = useState([]);
 
-  const load = () =>
+  const load = () => {
     getTasks()
       .then((res) => setTasks(res.data))
-      .catch((err) => console.error(err));
+      .catch((err) => console.error('Load failed:', err));
+  };
 
   useEffect(() => {
     load();
   }, []);
 
   const handleDelete = async (id) => {
-    try {
-      await deleteTask(id);
-      load();
-    } catch (err) {
-      console.error(err);
-    }
+    await deleteTask(id);
+    load();
   };
 
-  const handleDueDateChange = async (task, newDate) => {
-    try {
-      await updateTask(task.id, {
-        ...task,
-        dueDate: newDate
-      });
-      load();
-    } catch (err) {
-      console.error(err);
-    }
+  const handleDateChange = async (task, newDate) => {
+    await updateTask(task.id, {
+      title: task.title,
+      description: task.description,
+      dueDate: newDate,
+      status: task.status
+    });
+
+    load();
   };
 
   return (
@@ -46,11 +42,11 @@ export default function Tasks() {
             <h3>{task.title}</h3>
             <p>{task.description}</p>
 
-            <p>Due:</p>
+            <label>Due Date:</label>
             <input
               type="date"
-              value={task.dueDate || ""}
-              onChange={(e) => handleDueDateChange(task, e.target.value)}
+              value={task.dueDate || ''}
+              onChange={(e) => handleDateChange(task, e.target.value)}
             />
 
             <p>Status: {task.status}</p>
