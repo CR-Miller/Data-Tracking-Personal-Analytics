@@ -30,7 +30,10 @@ public class TaskService {
     public Task updateTask(Long id, Task updatedTask) {
         Task task = repository.findById(id).orElseThrow();
 
+        task.setTitle(updatedTask.getTitle());
+        task.setDescription(updatedTask.getDescription());
         task.setDueDate(updatedTask.getDueDate());
+        task.setStatus(updatedTask.getStatus());
 
         return repository.save(task);
     }
